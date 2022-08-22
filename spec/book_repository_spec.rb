@@ -1,37 +1,41 @@
-require 'book_repository'
-
+require "book_repository"
 RSpec.describe BookRepository do
+
     def reset_books_table
         seed_sql = File.read('spec/seeds_books.sql')
         connection = PG.connect({ host: '127.0.0.1', dbname: 'book_store' })
         connection.exec(seed_sql)
     end
-      
+  
     before(:each) do 
-        reset_books_table
+      reset_books_table
     end
-    it "returns a list of books" do
-    
-        repo = BookRepository.new
-        books = repo.all
+  
+    describe "#all" do
+        it 'Accesses DB and creates array of objects of books' do
+            repo = BookRepository.new
 
-        expect(books.length).to eq 2
-        expect(books[0].id).to eq '1'
-        expect(books[0].title).to eq 'Nineteen Eight-Four'
-        expect(books[0].author_name).to eq 'George Orwell'
-        
-        expect(books[1].id).to eq "2"
-        expect(books[1].title).to eq 'Mrs Dalloway'
-        expect(books[1].author_name).to eq 'Virginia Woolf'
+            books = repo.all
+
+            expect(books.length).to eq 2
+
+            expect(books[0].id).to eq "1"
+            expect(books[0].title).to eq 'To Kill a Mockingbird'
+            expect(books[0].author_name).to eq 'Harper Lee'
+
+            expect(books[1].id).to eq "2"
+            expect(books[1].title).to eq 'War and Peace'
+            expect(books[1].author_name).to eq 'Leo Tolstoy'
+        end
     end
 
-    describe "#book_list" do
+    describe "#print_booklist" do
         it '' do
             io = double(:io)
-            expect(io).to receive(:puts).with("1 - Nineteen Eight-Four - George Orwell")
-            expect(io).to receive(:puts).with("2 - Mrs Dalloway - Virginia Woolf")
+            expect(io).to receive(:puts).with("1 - To Kill a Mockingbird - Harper Lee").ordered
+            expect(io).to receive(:puts).with("2 - War and Peace - Leo Tolstoy").ordered
             repo = BookRepository.new(io)
-            repo.book_list 
+            repo.print_booklist 
         end
     end
 

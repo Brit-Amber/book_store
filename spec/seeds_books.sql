@@ -12,6 +12,5 @@ TRUNCATE TABLE books RESTART IDENTITY; -- replace with your own table name.
 -- Below this line there should only be `INSERT` statements.
 -- Replace these statements with your own seed data.
 
-INSERT INTO books (title, author_name) VALUES ('Nineteen Eight-Four', 'George Orwell');
-INSERT INTO books (title, author_name) VALUES ('Mrs Dalloway', 'Virginia Woolf');
-
+INSERT INTO books (title, author_name) VALUES ('To Kill a Mockingbird', 'Harper Lee');
+INSERT INTO books (title, author_name) VALUES ('War and Peace', 'Leo Tolstoy');
