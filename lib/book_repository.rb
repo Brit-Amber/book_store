@@ -3,9 +3,6 @@ class BookRepository
     def initialize (io = Kernel)
         @io = io
         @books = []
-    end
-
-    def all
         request = 'SELECT id, title, author_name FROM books;'
         result = DatabaseConnection.exec_params(request, [])
 
@@ -15,15 +12,17 @@ class BookRepository
             book.title = story['title']
             book.author_name = story['author_name']
 
-            books << book
+            @books << book
         end
+    end
 
-        return books
+    def all
+        return @books
     end
 
     def book_list
         #books = [<book1>, <book2>, <book3>]
-        books.each do |story|
+        @books.each do |story|
             @io.puts "#{story.id} - #{story.title} - #{story.author_name}"
         end
     end

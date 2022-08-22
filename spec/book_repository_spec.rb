@@ -28,11 +28,10 @@ RSpec.describe BookRepository do
     describe "#book_list" do
         it '' do
             io = double(:io)
-            expect(io).to receive(:puts).with("1 - Nineteen Eight-Four - George Orwell\n")
-            expect(io).to receive(:puts).with("2 - Mrs Dalloway - Virginia Woolf\n")
+            expect(io).to receive(:puts).with("1 - Nineteen Eight-Four - George Orwell")
+            expect(io).to receive(:puts).with("2 - Mrs Dalloway - Virginia Woolf")
             repo = BookRepository.new(io)
-            books = repo.all
-            books.book_list 
+            repo.book_list 
         end
     end
 
