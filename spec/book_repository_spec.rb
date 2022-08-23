@@ -31,11 +31,8 @@ RSpec.describe BookRepository do
 
     describe "#print_booklist" do
         it '' do
-            io = double(:io)
-            expect(io).to receive(:puts).with("1 - To Kill a Mockingbird - Harper Lee").ordered
-            expect(io).to receive(:puts).with("2 - War and Peace - Leo Tolstoy").ordered
-            repo = BookRepository.new(io)
-            repo.print_booklist 
+            repo = BookRepository.new
+            expect(repo.print_booklist).to eq ["1 - To Kill a Mockingbird - Harper Lee", "2 - War and Peace - Leo Tolstoy"] 
         end
     end
 

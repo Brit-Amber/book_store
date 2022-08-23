@@ -26,10 +26,10 @@ class BookRepository
     end
         
     def print_booklist
-        all.each do |story|
-            @io.puts "#{story.id} - #{story.title} - #{story.author_name}"
+        all.map do |story|
+            "#{story.id} - #{story.title} - #{story.author_name}"
         end
-        #Puts of string of id - title - author_name
+        
     end
 
 end

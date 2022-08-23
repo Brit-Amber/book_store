@@ -7,4 +7,5 @@ require_relative 'lib/book_repository.rb'
 DatabaseConnection.connect('book_store')
 
 nick_books = BookRepository.new
-nick_books.print_booklist #This is printing the array from .all too. 
+puts nick_books.all
+puts nick_books.print_booklist #This is printing the array from .all too. 
